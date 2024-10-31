@@ -133,16 +133,29 @@ body {
 }
 
 /* Logo Position on Home Page */
+/* Default (Mobile) Styles */
 .home .logo {
     position: absolute;
-    top: -450px;
-    left: 350px;
+    top: 20px; /* Position for mobile screens */
+    left: 20px; /* Position for mobile screens */
     z-index: 10;
 }
 
 .home .logo img {
-    width: 1750px;
+    width: 150px; /* Size for mobile */
     height: auto;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+    .home .logo {
+        top: -450px; /* Desktop position */
+        left: 350px; /* Desktop position */
+    }
+    .home .logo img {
+        width: 1750px; /* Size for desktop */
+        height: auto;
+    }
 }
 
 .home {
