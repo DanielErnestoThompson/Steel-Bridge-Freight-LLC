@@ -1,5 +1,4 @@
-/* General */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
 
 * {
     font-family: 'Poppins', sans-serif;
@@ -11,10 +10,118 @@
     text-decoration: none;
 }
 
-html { font-size: 62.5%; }
-body { overflow-x: hidden; }
+html {
+    font-size: 62.5%;
+}
 
-/* Home Section */
+body {
+    overflow-x: hidden;
+}
+
+.heading, .clients .section-header h2, .section-head h1, .testimonials .section-header h2, .section-head-1 h4 {
+    margin: 2rem;
+    padding-top: 6rem;
+    display: inline-block;
+    font-size: 3.5rem;
+    color: #002e5f;
+    position: relative;
+    letter-spacing: .2rem;
+}
+
+/* Navigation Bar */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgba(0, 46, 95, 0.9); /* Semi-transparent background */
+}
+
+.header .logo img {
+    width: 130px; /* Adjusted size for logo */
+    height: auto;
+}
+
+.header .navbar {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.header .navbar ul {
+    display: flex;
+    gap: 2rem; /* Adds space between navigation links */
+    margin: 0;
+    padding: 0;
+}
+
+.header .navbar ul li {
+    list-style-type: none;
+}
+
+.header .navbar ul li a {
+    color: #ffffff; /* White text color */
+    font-size: 1.8rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header .navbar ul li a:hover {
+    color: #00bfff; /* Highlight color on hover */
+}
+
+/* Mobile Menu Button */
+.header .fa-bars {
+    display: none;
+    color: #ffffff;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    /* Adjust header for mobile */
+    .header {
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+    /* Hide navbar in mobile */
+    .header .navbar ul {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #002e5f; /* Background for mobile menu */
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        z-index: 99;
+    }
+
+    /* Display the menu button */
+    .header .fa-bars {
+        display: block;
+    }
+
+    /* Mobile nav links */
+    .header .navbar ul li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    /* Toggle menu display */
+    .header .navbar ul.nav-open {
+        display: flex;
+    }
+}
+
+/* Video Background */
 #background-video {
     position: absolute;
     top: 0;
@@ -22,32 +129,10 @@ body { overflow-x: hidden; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: -1; /* Places it behind other content */
 }
 
-.home {
-    position: relative;
-    min-height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 1rem;
-    overflow: hidden;
-}
-
-.home h1 {
-    color: #fff;
-    font-size: 5.5rem;
-}
-
-.home h2 {
-    color: #fff;
-    font-size: 3rem;
-}
-
-/* Logo */
+/* Logo Position on Home Page */
 .home .logo {
     position: absolute;
     top: -450px;
@@ -60,118 +145,156 @@ body { overflow-x: hidden; }
     height: auto;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    html { font-size: 50%; }
-    
-    /* Adjust Home Section */
-    .home h1 { font-size: 4rem; }
-    .home h2 { font-size: 2rem; }
-    
-    /* Logo */
-    .home .logo {
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .home .logo img {
-        width: 300px;
-        height: auto;
-    }
-    
-    /* Header */
-    .header .navbar ul {
-        flex-direction: column;
-        position: fixed;
-        top: -100%;
-        width: 100%;
-        background-color: #fff;
-    }
-    
-    .header .navbar ul li a {
-        color: #333;
-        font-size: 2rem;
-    }
-
-    .header .fa-bars {
-        display: block;
-        color: white;
-    }
-}
-
-/* Heading Styles */
-.heading, .section-head h1, .section-head-1 h4 {
-    margin: 2rem;
-    font-size: 3.5rem;
-    color: #002e5f;
+.home {
     position: relative;
-    letter-spacing: .2rem;
-    display: inline-block;
+    overflow: hidden;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    text-align: center;
+    padding: 0 1rem;
 }
 
-/* Section Specific Heading Styles */
-.heading::before, .heading::after, .section-head h1::before, .section-head h1::after {
-    content: '';
+.home h1 {
+    color: #fff;
+    font-size: 5.5rem;
+}
+
+.home h2 {
+    color: #fff;
+    font-size: 3rem;
+}
+
+.home .wave {
     position: absolute;
-    height: 2.5rem;
-    width: 2.5rem;
-    border-top: .4rem solid #002e5f;
-    border-left: .4rem solid #002e5f;
-}
-
-.heading::before, .section-head h1::before {
-    top: 5.8rem;
-    left: -2rem;
-}
-
-.heading::after, .section-head h1::after {
     bottom: -.5rem;
-    right: -2rem;
-    transform: rotate(180deg);
+    left: 0;
+    height: 11rem;
+    width: 100%;
+    background: url(../images/wave.png);
+    background-size: 100rem 11rem;
+    animation: waves 8s linear infinite;
+    background-repeat: repeat-x;
 }
 
-/* Button Styles */
-.btn {
-    outline: none;
-    border: none;
-    border-radius: 5rem;
-    background: white;
-    border-style: groove;
-    border-color: #002e5f;
-    font-size: 1.5rem;
-    cursor: pointer;
-    height: 3.5rem;
-    width: 15rem;
-    box-shadow: 0 .2rem .5rem rgba(0,0,0,.3);
+.home .wave2 {
+    animation-direction: reverse;
+    animation-duration: 6s;
+    opacity: .3;
 }
 
-.btn:hover {
-    color: white;
-    background: #002e5f;
-    letter-spacing: .1rem;
+.home .wave3 {
+    animation-duration: 4s;
+    opacity: .5;
 }
 
-/* Footer */
-.footer {
-    background: #333;
+@keyframes waves {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: 100rem;
+    }
+}
+
+.about {
+    min-height: 55vh;
+    width: 100vw;
+    top: -3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    line-height: 10rem;
+}
+
+.about .row {
+    line-height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 4rem;
+}
+
+.about .row .content {
+    text-align: center;
+}
+
+.about .row .content h3 {
+    font-size: 3rem;
+    color: black;
+}
+
+.about .row .content p {
+    font-size: 2rem;
+    color: #333;
+    padding: 1rem 0;
+}
+
+/* Other elements (footer, counters, testimonials, etc.) */
+.counters {
+    background-image: url(../images/img2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: #fff;
-    padding: 30px 0;
+    padding: 40px 20px;
 }
 
-.footer .social-links a {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    font-size: 18px;
-    color: #00bfff;
-    background: #fff;
-    margin: 0 4px;
+.section-head {
+    margin-bottom: 60px;
+    text-align: center;
+    margin-top: -8rem;
+}
+
+.section-head p {
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.clients {
+    position: relative;
+    padding: 90px 0;
+    text-align: center;
+    margin-top: -10rem;
+    margin-bottom: -10rem;
+}
+
+.clients img {
+    max-width: 100%;
+    opacity: 1;
     transition: 0.3s;
+    padding: 15px 0;
 }
 
-.footer .social-links a:hover {
-    background: #00bfff;
-    color: #fff;
+.clients img:hover {
+    opacity: .5;
+}
+
+/* Back-to-Top Button */
+.back-to-top {
+    position: fixed;
+    display: none;
+    background-color: #00bfff;
+    color: #ffffff;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    line-height: 1;
+    font-size: 44px;
+    right: 15px;
+    bottom: 15px;
+    transition: background 0.3s;
+    z-index: 9;
+}
+
+.back-to-top i {
+    color: #ffffff;
+}
+
+.back-to-top i:hover {
+    color: black;
 }
