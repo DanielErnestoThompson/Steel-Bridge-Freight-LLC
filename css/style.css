@@ -1084,8 +1084,8 @@ body{
     }
 
     .header .logo img {
-        width: 100px; /* Set the width you prefer */
-        height: auto; /* Maintains aspect ratio */
+        width: 300px; /* Set the width you prefer */
+        height: 300px; /* Maintains aspect ratio */
     }
     
 
