@@ -159,13 +159,13 @@ body{
 
 .home .logo {
     position: absolute;
-    top: 20px; /* Adjust as needed to position the logo vertically */
-    left: 20px; /* Adjust as needed to position the logo horizontally */
+    top: -450px; /* Adjust as needed to position the logo vertically */
+    left: 350px; /* Adjust as needed to position the logo horizontally */
     z-index: 10; /* Ensure it appears above other elements */
 }
 
 .home .logo img {
-    width: px; /* Adjust size as needed */
+    width: 1750px; /* Adjust size as needed */
     height: auto;
 }
 
