@@ -2,7 +2,7 @@
 // Step 1: Database Connection
 $servername = "localhost";  // Replace with your server details
 $username = "root";         // Replace with your MySQL username
-$password = "2268";             // Replace with your MySQL password
+$password = "2268";         // Replace with your MySQL password
 $dbname = "steel_bridge";   // Replace with your database name
 
 // Create connection
@@ -20,13 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $availability = $_POST['availability'];
     $rate = $_POST['rate'];
 
-    // Insert data into the carriers table
-    $sql = "INSERT INTO carriers (name, truck_type, availability, rate) VALUES ('$name', '$truck_type', '$availability', '$rate')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Carrier registered successfully!";
+    // Basic input validation
+    if (empty($name) || empty($truck_type) || empty($availability) || !is_numeric($rate)) {
+        echo "Please fill in all fields and ensure the rate is a number.";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Use a prepared statement to insert data
+        $stmt = $conn->prepare("INSERT INTO carriers (name, truck_type, availability, rate) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $name, $truck_type, $availability, $rate);
+
+        if ($stmt->execute()) {
+            echo "Carrier registered successfully!";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        // Close the statement
+        $stmt->close();
     }
 }
 
