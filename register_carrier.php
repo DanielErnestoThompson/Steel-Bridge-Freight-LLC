@@ -1,11 +1,10 @@
 <?php
-// Step 1: Database Connection
-$servername = "localhost";  // Replace with your server details
-$username = "root";         // Replace with your MySQL username
-$password = "2268";         // Replace with your MySQL password
-$dbname = "steel_bridge";   // Replace with your database name
+// Database connection
+$servername = "localhost";  // Change if necessary
+$username = "root";         // Default XAMPP MySQL username
+$password = "";             // Default XAMPP MySQL password (leave blank)
+$dbname = "steel_bridge";   // Database name
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -13,57 +12,49 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Step 2: Handle Form Submission
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $truck_type = $_POST['truck_type'];
     $availability = $_POST['availability'];
     $rate = $_POST['rate'];
 
-    // Basic input validation
-    if (empty($name) || empty($truck_type) || empty($availability) || !is_numeric($rate)) {
-        echo "Please fill in all fields and ensure the rate is a number.";
+    $sql = "INSERT INTO carriers (name, truck_type, availability, rate) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssd", $name, $truck_type, $availability, $rate);
+
+    if ($stmt->execute()) {
+        echo "New carrier registered successfully.";
     } else {
-        // Use a prepared statement to insert data
-        $stmt = $conn->prepare("INSERT INTO carriers (name, truck_type, availability, rate) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $name, $truck_type, $availability, $rate);
-
-        if ($stmt->execute()) {
-            echo "Carrier registered successfully!";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        // Close the statement
-        $stmt->close();
+        echo "Error: " . $stmt->error;
     }
+
+    $stmt->close();
 }
 
-// Close the connection
 $conn->close();
 ?>
 
-<!-- Step 3: HTML Form -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register as Carrier</title>
+    <title>Register Carrier</title>
 </head>
 <body>
-    <h2>Carrier Registration</h2>
+    <h2>Register a New Carrier</h2>
     <form method="POST" action="register_carrier.php">
         <label for="name">Name:</label>
-        <input type="text" name="name" id="name" required><br><br>
+        <input type="text" name="name" required><br>
 
         <label for="truck_type">Truck Type:</label>
-        <input type="text" name="truck_type" id="truck_type" required><br><br>
+        <input type="text" name="truck_type"><br>
 
-        <label for="availability">Availability (e.g., dates):</label>
-        <input type="text" name="availability" id="availability" required><br><br>
+        <label for="availability">Availability (YYYY-MM-DD):</label>
+        <input type="date" name="availability"><br>
 
         <label for="rate">Rate:</label>
-        <input type="text" name="rate" id="rate" required><br><br>
+        <input type="number" step="0.01" name="rate"><br>
 
         <button type="submit">Register</button>
     </form>
