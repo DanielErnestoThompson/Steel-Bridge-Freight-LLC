@@ -1,11 +1,11 @@
 <?php
 // Database connection
-$host = 'localhost';
-$db = 'your_database_name';
-$user = 'your_database_user';
-$pass = 'your_database_password';
+$servername = "localhost";  // Change if necessary
+$username = "root";         // Default XAMPP MySQL username
+$password = "";             // Default XAMPP MySQL password (leave blank)
+$dbname = "steel_bridge";   // Database name
 
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
