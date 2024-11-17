@@ -1,62 +1,36 @@
 <?php
 // Database connection
-$servername = "localhost";  // Change if necessary
-$username = "root";         // Default XAMPP MySQL username
-$password = "";             // Default XAMPP MySQL password (leave blank)
-$dbname = "steel_bridge";   // Database name
+$host = 'localhost';
+$db = 'your_database_name';
+$user = 'your_database_user';
+$pass = 'your_database_password';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $user, $pass, $db);
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $truck_type = $_POST['truck_type'];
-    $availability = $_POST['availability'];
-    $rate = $_POST['rate'];
+// Collect form data
+$carrier_name = $_POST['carrier_name'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$license_plate = $_POST['license_plate'];
+$dot_number = $_POST['dot_number'];
+$mc_number = $_POST['mc_number'];
+$company_name = $_POST['company_name'];
 
-    $sql = "INSERT INTO carriers (name, truck_type, availability, rate) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssd", $name, $truck_type, $availability, $rate);
+// Insert data into the database
+$sql = "INSERT INTO carriers (carrier_name, email, phone, license_plate, dot_number, mc_number, company_name)
+        VALUES ('$carrier_name', '$email', '$phone', '$license_plate', '$dot_number', '$mc_number', '$company_name')";
 
-    if ($stmt->execute()) {
-        echo "New carrier registered successfully.";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    $stmt->close();
+if ($conn->query($sql) === TRUE) {
+    echo "Carrier registered successfully!";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
+// Close connection
 $conn->close();
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register Carrier</title>
-</head>
-<body>
-    <h2>Register a New Carrier</h2>
-    <form method="POST" action="register_carrier.php">
-        <label for="name">Name:</label>
-        <input type="text" name="name" required><br>
-
-        <label for="truck_type">Truck Type:</label>
-        <input type="text" name="truck_type"><br>
-
-        <label for="availability">Availability (YYYY-MM-DD):</label>
-        <input type="date" name="availability"><br>
-
-        <label for="rate">Rate:</label>
-        <input type="number" step="0.01" name="rate"><br>
-
-        <button type="submit">Register</button>
-    </form>
-</body>
-</html>
