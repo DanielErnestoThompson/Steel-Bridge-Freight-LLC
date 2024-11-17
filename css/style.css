@@ -1388,19 +1388,30 @@ body{
     margin-top: 20px;
 }
 
-.join-client-button {
+.join-client-button, .join-carrier-button, .see-bookings-button {
     padding: 10px 20px;
     font-size: 16px;
+    margin: 5px;
+    background-color: #007BFF;
     color: white;
-    background-color: #007bff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-.join-client-button:hover {
+.join-client-button:hover,
+.join-carrier-button:hover,
+.see-bookings-button:hover {
     background-color: #0056b3;
+}
+
+.join-carrier-button {
+    margin-left: 10px;
+}
+
+.see-bookings-button {
+    margin-left: 10px;
 }
 
 .form-container {
