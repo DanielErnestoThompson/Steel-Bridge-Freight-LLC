@@ -36,17 +36,18 @@
     </header>
 
     <section id="home" class="home">
-        <a href="./register_client_form.php" class="logo"><img src="./images/image.png" alt=""></a> 
-        <button onclick="window.location.href='register_client_form.php'" class="join-client-button">
-            Join as a Client
-        </button>
-        <a href="./register_carrier_form.php" class="logo"><img src="./images/image.png" alt=""></a> 
-        <button onclick="window.location.href='register_carrier_form.php'" class="join-carrier-button">
-            Join as a Carrier
-        </button>
-        <button onclick="window.location.href='view_bookings.php'" class="see-bookings-button">
-            See Bookings Now
-        </button>
+        <div class="button-container">
+            <button onclick="window.location.href='register_client_form.php'" class="join-client-button">
+                Join as a Client
+            </button>
+            <button onclick="window.location.href='register_carrier_form.php'" class="join-carrier-button">
+                Join as a Carrier
+            </button>
+            <button onclick="window.location.href='view_bookings.php'" class="see-bookings-button">
+                See Bookings Now
+            </button>
+        </div>
+        
         <video autoplay muted loop id="background-video">
             <source src="./images/img1.mp4" type="video/mp4"> 
             Your browser does not support the video tag.

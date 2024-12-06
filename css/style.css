@@ -1400,10 +1400,11 @@ body{
     transition: background-color 0.3s ease;
 }
 
-.join-client-button:hover,
-.join-carrier-button:hover,
-.see-bookings-button:hover {
-    background-color: #0056b3;
+.join-client-button,
+.join-carrier-button,
+.see-bookings-button {
+    position: relative;
+    z-index: 10; /* Higher than background elements */
 }
 
 .join-carrier-button {
