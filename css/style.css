@@ -158,7 +158,7 @@ body{
 }
 
 .home .logo {
-    position: absolute;
+    position: relative;
     top: -450px; /* Adjust as needed to position the logo vertically */
     left: 350px; /* Adjust as needed to position the logo horizontally */
     z-index: 20; /* Ensure it appears above other elements */
