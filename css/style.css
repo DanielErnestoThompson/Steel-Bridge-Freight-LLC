@@ -157,6 +157,7 @@ body{
     z-index: -1; /* Places it behind other content */
 }
 
+
 .home .logo {
     position: relative;
     top: -450px; /* Adjust as needed to position the logo vertically */
@@ -168,6 +169,7 @@ body{
     width: 1750px; /* Adjust size as needed */
     height: auto;
 }
+
 
 .home {
     position: relative;
@@ -1385,6 +1387,22 @@ body{
 .join-client-button-container {
     text-align: left;
     margin-top: 20px;
+}
+
+/* Add this just before or after `.join-client-button-container` */
+.button-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center horizontally */
+    gap: 15px; /* Spacing between items */
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.button-container .logo {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 15px; /* Add spacing below the logo */
 }
 
 .join-client-button, .join-carrier-button, .see-bookings-button {
