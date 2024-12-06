@@ -29,7 +29,7 @@
                 <li><a href="portfolio">portfolio</a></li>
                 <li><a href="team">team</a></li>
                 <li><a href="careers.html">career</a></li>
-                <li><a href="contact">contact</a></li>
+                <li><a href="find a booking">booking</a></li>
                 <li><a href="faq">FAQ</a></li>
             </ul>
         </nav>
@@ -164,13 +164,41 @@
     </div>
 </div>
 
-<div class="communicate">
-    <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-    <p>Lorem ipsum dolor sit amet.</p>
-    <a href="#contact"><button class="btn">Contact Now</button></a>
+<div class="find a booking">
+    <h4>Search and Post Jobs</h4>
+
+    <!-- Search Form -->
+    <form id="search-jobs" action="process_search.php" method="POST">
+        <input type="text" name="origin" placeholder="Origin" required>
+        <input type="text" name="destination" placeholder="Destination" required>
+        <select name="equipment">
+            <option value="Flatbed">Flatbed</option>
+            <option value="Dry Van">Dry Van</option>
+            <option value="Reefer">Reefer</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Post Job Form -->
+    <form id="post-job" action="post_job.php" method="POST">
+        <h5>Post a Job</h5>
+        <input type="text" name="pickup" placeholder="Pickup Location" required>
+        <input type="text" name="dropoff" placeholder="Dropoff Location" required>
+        <select name="equipment" required>
+            <option value="Flatbed">Flatbed</option>
+            <option value="Dry Van">Dry Van</option>
+            <option value="Reefer">Reefer</option>
+        </select>
+        <input type="text" name="weight" placeholder="Weight (lbs)" required>
+        <input type="text" name="dimensions" placeholder="Dimensions" required>
+        <input type="text" name="date_range" placeholder="Date Range" required>
+        <textarea name="notes" placeholder="Additional Notes"></textarea>
+        <button type="submit">Post Job</button>
+    </form>
 </div>
 
-<div class="testimonials mt-100">
+
+<!-- <div class="testimonials mt-100">
     <div class="container">
         <div class="section-header" style="text-align: center;">
             <h2 style="margin-top: -15rem;">Testimonials</h2>
@@ -247,7 +275,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="clients mt-100">
     <div class="container">
