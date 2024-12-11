@@ -310,6 +310,13 @@ input[type="date"] {
     box-sizing: border-box;
 }
 
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
 .pt-5 .container .row .section-head p{
     font-size: 2rem;
     color: #333;
