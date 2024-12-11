@@ -301,6 +301,15 @@ form button:hover {
     background-color: #0056b3;
 }
 
+input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .pt-5 .container .row .section-head p{
     font-size: 2rem;
     color: #333;
