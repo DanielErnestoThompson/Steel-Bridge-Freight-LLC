@@ -47,7 +47,38 @@
     </div>        
     </section>
     
+    <div class="find a booking">
+        <h4>Search and Post Jobs</h4>
     
+        <!-- Search Form -->
+        <form id="search-jobs" action="process_search.php" method="POST">
+            <input type="text" name="origin" placeholder="Origin" required>
+            <input type="text" name="destination" placeholder="Destination" required>
+            <select name="equipment">
+                <option value="Flatbed">Flatbed</option>
+                <option value="Dry Van">Dry Van</option>
+                <option value="Reefer">Reefer</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    
+        <!-- Post Job Form -->
+        <form id="post-job" action="post_job.php" method="POST">
+            <h5>Post a Job</h5>
+            <input type="text" name="pickup" placeholder="Pickup Location" required>
+            <input type="text" name="dropoff" placeholder="Dropoff Location" required>
+            <select name="equipment" required>
+                <option value="Flatbed">Flatbed</option>
+                <option value="Dry Van">Dry Van</option>
+                <option value="Reefer">Reefer</option>
+            </select>
+            <input type="text" name="weight" placeholder="Weight (lbs)" required>
+            <input type="text" name="dimensions" placeholder="Dimensions" required>
+            <input type="text" name="date_range" placeholder="Date Range" required>
+            <textarea name="notes" placeholder="Additional Notes"></textarea>
+            <button type="submit">Post Job</button>
+        </form>
+    </div>
 
   <section id="about" class="about">
     <h1 class="heading">Our Vision</h1>
@@ -154,39 +185,6 @@
         </div>
       </div>
     </div>
-</div>
-
-<div class="find a booking">
-    <h4>Search and Post Jobs</h4>
-
-    <!-- Search Form -->
-    <form id="search-jobs" action="process_search.php" method="POST">
-        <input type="text" name="origin" placeholder="Origin" required>
-        <input type="text" name="destination" placeholder="Destination" required>
-        <select name="equipment">
-            <option value="Flatbed">Flatbed</option>
-            <option value="Dry Van">Dry Van</option>
-            <option value="Reefer">Reefer</option>
-        </select>
-        <button type="submit">Search</button>
-    </form>
-
-    <!-- Post Job Form -->
-    <form id="post-job" action="post_job.php" method="POST">
-        <h5>Post a Job</h5>
-        <input type="text" name="pickup" placeholder="Pickup Location" required>
-        <input type="text" name="dropoff" placeholder="Dropoff Location" required>
-        <select name="equipment" required>
-            <option value="Flatbed">Flatbed</option>
-            <option value="Dry Van">Dry Van</option>
-            <option value="Reefer">Reefer</option>
-        </select>
-        <input type="text" name="weight" placeholder="Weight (lbs)" required>
-        <input type="text" name="dimensions" placeholder="Dimensions" required>
-        <input type="text" name="date_range" placeholder="Date Range" required>
-        <textarea name="notes" placeholder="Additional Notes"></textarea>
-        <button type="submit">Post Job</button>
-    </form>
 </div>
 
 
