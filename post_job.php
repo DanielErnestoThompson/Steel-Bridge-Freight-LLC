@@ -14,7 +14,6 @@ if ($conn->connect_error) {
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
     $pickup = $_POST['pickup'];
     $dropoff = $_POST['dropoff'];
     $equipment = $_POST['equipment'];
@@ -22,23 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dimensions = $_POST['dimensions'];
     $pickup_date = $_POST['pickup_date'];
     $dropoff_date = $_POST['dropoff_date'];
-    $notes = isset($_POST['notes']) ? $_POST['notes'] : ''; // Optional field
+    $notes = $_POST['notes'];
 
-    // Insert job into the jobs table
+    // Insert job into the jobs table with the default status 'Open'
     $sql = "INSERT INTO jobs (pickup, dropoff, equipment, weight, dimensions, pickup_date, dropoff_date, notes, status)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Open')";
     $stmt = $conn->prepare($sql);
-
-    if ($stmt === false) {
-        die("Error preparing statement: " . $conn->error);
-    }
-
     $stmt->bind_param("ssssssss", $pickup, $dropoff, $equipment, $weight, $dimensions, $pickup_date, $dropoff_date, $notes);
 
     if ($stmt->execute()) {
-        // Redirect to a success page or show a success message
-        header("Location: view_jobs.php?success=1");
-        exit();
+        echo "Job successfully posted!";
     } else {
         echo "Error: " . $stmt->error;
     }
