@@ -20,17 +20,32 @@ $license_plate = $_POST['license_plate'];
 $dot_number = $_POST['dot_number'];
 $mc_number = $_POST['mc_number'];
 $company_name = $_POST['company_name'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
 
 // Insert data into the database
-$sql = "INSERT INTO carriers (carrier_name, email, phone, license_plate, dot_number, mc_number, company_name)
-        VALUES ('$carrier_name', '$email', '$phone', '$license_plate', '$dot_number', '$mc_number', '$company_name')";
+$sql = "INSERT INTO carriers (carrier_name, email, phone, license_plate, dot_number, mc_number, company_name, password)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-if ($conn->query($sql) === TRUE) {
+$stmt = $conn->prepare($sql);
+$stmt->bind_param(
+    "ssssssss",
+    $carrier_name,
+    $email,
+    $phone,
+    $license_plate,
+    $dot_number,
+    $mc_number,
+    $company_name,
+    $password
+);
+
+if ($stmt->execute()) {
     echo "Carrier registered successfully!";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $stmt->error;
 }
 
-// Close connection
+// Close statement and connection
+$stmt->close();
 $conn->close();
 ?>
