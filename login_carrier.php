@@ -1,20 +1,21 @@
 <?php
 // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "steel_bridge";
+$servername = "localhost";  // Change if necessary
+$username = "root";         // Default XAMPP MySQL username
+$password = "";             // Default XAMPP MySQL password
+$dbname = "steel_bridge";   // Database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check login form submission
+// Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Fetch carrier data
     $sql = "SELECT * FROM carriers WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -23,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result->num_rows > 0) {
         $carrier = $result->fetch_assoc();
+
+        // Verify password
         if (password_verify($password, $carrier['password'])) {
             session_start();
             $_SESSION['carrier_id'] = $carrier['id'];
@@ -35,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "No carrier found with that email.";
     }
+
     $stmt->close();
 }
 
